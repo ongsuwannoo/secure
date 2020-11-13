@@ -2,11 +2,20 @@
 session_start();
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] == 0) {
 	header('location: login.php');
-}
+} 
 include('function.php');
 ?>
-<h2>Index <a href="logout.php" style="color: red">Logout</a></h2>
+<h2>Index</h2>
+<?
+$sql = "SELECT * FROM user WHERE username = '".$_SESSION['username']."';";
+$result = confetch($sql);
+$_SESSION['uid'] = $result[0]['id'];
+$_SESSION['role'] = $result[0]['role'];
+echo '<p>Username: '.$_SESSION['username'].'<p>';
+echo '<p>Role: '.$_SESSION['role'].'<p>';
+?>
 
+<h3><a href="logout.php" style="color: red">Logout</a> <a href="form.php" style="color: darkgreen">Create</a></h3>
 <form method="post">
 	<lable>
 		Search <input type="text" placeholder="Search" name="search">
@@ -40,19 +49,16 @@ include('function.php');
 		}
 		echo "</tr>";
 	}
-
-
 	?>
 </table>
-<h3><a href="form.php" style="color: darkgreen">Create</a></h3>
-<pre>
-	<?
-	passthru("grep -i Pa test.txt");
-	?>
-</pre>
-<div id='box'>
 
-</div>
+<?
+// passthru("grep -i Pa test.txt");
+if ($_SESSION['role'] == 'admin') {
+	echo "FLAG{1804956abd21cd701c0e7931d7ebf5df}";
+}
+?>
+<!-- <div id='box'></div> -->
 <script>
 	window.onload = function(e){
 		// document.getElementById('box').style.backgroundColor = 'green';

@@ -12,24 +12,28 @@ if (sizeof($_POST) > 0) {
     $username = $data['username'];
     $password = $data['password'];
     $sql = "SELECT * FROM user WHERE username = '$username';";
+
+    $result = confetch($sql);
+    $status_error = 0;
+    if ($result[0]['password'] == hash('md5', $data['password'])) {
+      $_SESSION['username'] = $data['username'];
+      $_SESSION['uid'] = $result[0]['id'];
+      $_SESSION['token'] = $result[0]['token'];
+      $_SESSION['role'] = $result[0]['role'];
+      $_SESSION['login_status'] = 1;
+
+      if ($_GET['next'] != null && $_GET['next'] != '') {
+        header('Location: ' . $_GET["next"]);
+      } else {
+        header('Location: index.php');
+      }
+    } else {
+      $status_error = 1;
+    }
   }
 
-  $result = confetch($sql);
-  $status_error = 0;
-  if ($result[0]['password'] == hash('md5', $data['password'])) {
-    $_SESSION['username'] = $data['username'];
-    $_SESSION['uid'] = $result[0]['id'];
-    $_SESSION['token'] = $result[0]['token'];
-    $_SESSION['role'] = $result[0]['role'];
-    $_SESSION['login_status'] = 1;
-
-    if ($_GET['next'] != null && $_GET['next'] != '') {
-      header('Location: ' . $_GET["next"]);
-    } else {
-      header('Location: index.php');
-    }
-  } else {
-    $status_error = 1;
+  if ($data['form'] == 'register') {
+    header('Location: register.php');
   }
 }
 ?>
@@ -47,10 +51,14 @@ if (sizeof($_POST) > 0) {
   </p>
   <button type="submit" name="form" value="login">Login</button>
 </form>
-<button href="register.php">Regoster</button>
+
+<form method="POST">
+  <button type="submit" name="form" value="register">Register</button>
+</form>
+
 
 <h2 style="color: red"><?php
- if ($status_error == 1) {
-   echo "Access denied";
- }
- ?></h2>
+if ($status_error == 1) {
+ echo "Access denied";
+}
+?></h2>
