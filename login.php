@@ -45,8 +45,9 @@ if (sizeof($_POST) > 0) {
     <sp class="s"></sp>
     <input type="password" name="password" placeholder="Password" required>
   </p>
-  <button type="submit" name="form" value="login">login</button>
+  <button type="submit" name="form" value="login">Login</button>
 </form>
+<button href="register.php">Regoster</button>
 
 <h2 style="color: red"><?php
  if ($status_error == 1) {

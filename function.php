@@ -48,22 +48,27 @@ function confetch($sql)
 
 function conmultifetch($sql)
 {
+  $result = array();
   $con = con();
+  $i = 0;
   $res = mysqli_multi_query($con, $sql);
   do {
     // Store first result set
-    if ($result = mysqli_store_result($con)) {
-      while ($row = mysqli_fetch_row($result)) {
-        printf("%s\n", $row[0]);
+    if ($date = mysqli_store_result($con)) {
+      while ($row = mysqli_fetch_row($date)) {
+        // printf("%s\n", $row[0]);
+        $result[$i] = $row;
+        $i = $i + 1;
       }
-      mysqli_free_result($result);
+      mysqli_free_result($date);
     }
     // if there are more result-sets, the print a divider
     if (mysqli_more_results($con)) {
-      printf("-------------\n");
+      // printf("-------------\n");
     }
      //Prepare next result set
   } while (mysqli_next_result($con));
+  return $result;
 }
 
 function alreadyLogin()

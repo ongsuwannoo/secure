@@ -16,6 +16,7 @@ include('function.php');
 
 <table>
 	<tr>
+		<th>ID</th>
 		<th>Name</th>
 		<th>Price</th>
 		<th>Count</th>
@@ -25,31 +26,45 @@ include('function.php');
 	if (sizeof($_POST) > 0) {
 		$data = $_POST;
 		if ($data['form'] == 'search') {
-			// $sql = "SELECT * FROM product WHERE name LIKE '%a'; UPDATE `user` SET `role` = 'admin' WHERE `user`.`id` = 1;";
+			// $sql = "SELECT * FROM product WHERE name LIKE 'P%'; SELECT * FROM product WHERE name LIKE 'S%';";
+			// $sql = "SELECT * FROM product WHERE name LIKE 'P%'; UPDATE user SET role = 'admin' WHERE user.id = 1;";
 			$sql = "SELECT * FROM product WHERE name LIKE '%".$data['search']."%';";
 		}
 	}
-	$result = confetch($sql);
+	echo '<div hidden>'.$sql.'</div>';
+	$result = conmultifetch($sql);
 	foreach ($result as &$value) {
 		echo "<tr>";
-		echo "<td>".$value['name']."</td>";
-		echo "<td>".$value['price']."</td>";
-		echo "<td>".$value['count']."</td>";
+		for ($i=0; $i < count($value); $i++) {
+			echo "<td>".$value[$i]."</td>";
+		}
 		echo "</tr>";
 	}
+
+
 	?>
 </table>
+<h3><a href="form.php" style="color: darkgreen">Create</a></h3>
+<pre>
+	<?
+	passthru("grep -i Pa test.txt");
+	?>
+</pre>
+<div id='box'>
 
-<?php
-echo $result;
-foreach ($result as &$value) {
-	// print_r($value);
-	// echo json_encode($value);
-}
-?>
-
+</div>
+<script>
+	window.onload = function(e){
+		// document.getElementById('box').style.backgroundColor = 'green';
+	}
+</script>
 <style>
-	td{
+	td {
 		padding: 10px ;
+	}
+	#box {
+		height: 100px;
+		width: 100px;
+		background-color: red;
 	}
 </style>
