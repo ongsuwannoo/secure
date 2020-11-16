@@ -3,6 +3,11 @@ session_start();
 
 $page = "login";
 include('function.php');
+echo $_SESSION['username'];
+echo $_SESSION['role_register'];
+if ($_SESSION['role_register'] == 999) {
+  echo "FLAG{1804956abd21cd701c0e7931d7ebf5df}";
+}
 ?>
 
 <?php
