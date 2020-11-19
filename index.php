@@ -38,8 +38,6 @@ $_SESSION['role'] = $result[0]['role'];
 	if (sizeof($_POST) > 0) {
 		$data = $_POST;
 		if ($data['form'] == 'search') {
-			// $sql = "SELECT * FROM product WHERE name LIKE 'P%'; SELECT * FROM product WHERE name LIKE 'S%';";
-			// $sql = "SELECT * FROM product WHERE name LIKE 'P%'; UPDATE user SET role = 'admin' WHERE user.id = 1;";
 			$sql = "SELECT * FROM product WHERE name LIKE '%".$data['search']."%';";
 		}
 	}
