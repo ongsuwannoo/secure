@@ -1,4 +1,4 @@
-# docker-lamp
+# Kaidee.com | Project 06016309 INFORMATION SYSTEM SECURITY AND IT LAWS
 
 Docker example with Apache, MySql 8.0, PhpMyAdmin and Php
 
