@@ -7,3 +7,4 @@ RUN apt-get update \
     && docker-php-ext-install zip
 
 COPY conf/php.ini /usr/local/etc/php/
+COPY conf/secure_pass /etc/
