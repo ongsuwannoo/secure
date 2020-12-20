@@ -5,10 +5,10 @@
 - You can use MySql 5.7 if you checkout to the tag `mysql5.7`
 
 ## Config
-- Access for less secure apps
+1. Access for less secure apps
 https://www.google.com/settings/u/0/security/lesssecureapps
 
-- Edit `/www/secure/config.php`
+2. Edit `/www/secure/config.php`
 ```
 $CONFIG['email_username'] = '*********@gmail.com';
 $CONFIG['email_password'] = '*********';
