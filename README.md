@@ -1,10 +1,10 @@
 # Kaidee.com | Project 06016309 INFORMATION SYSTEM SECURITY AND IT LAWS
 
-Docker example with Apache, MySql 8.0, PhpMyAdmin and Php
+## Docker example with Apache, MySql 8.0, PhpMyAdmin and Php
 
 - You can use MySql 5.7 if you checkout to the tag `mysql5.7`
 
-Config
+## Config
 - Access for less secure apps
 https://www.google.com/settings/u/0/security/lesssecureapps
 
@@ -13,7 +13,8 @@ https://www.google.com/settings/u/0/security/lesssecureapps
 $CONFIG['email_username'] = '*********@gmail.com';
 $CONFIG['email_password'] = '*********';
  ```
-
+ 
+## Start
 I use docker-compose as an orchestrator. To run these containers:
 
 ```
