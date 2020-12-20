@@ -5,7 +5,7 @@
 - You can use MySql 5.7 if you checkout to the tag `mysql5.7`
 
 ## Config
-1. Access for less secure apps
+1. "Access for less secure apps" is turned off 
 https://www.google.com/settings/u/0/security/lesssecureapps
 
 2. Edit `/www/secure/config.php`
